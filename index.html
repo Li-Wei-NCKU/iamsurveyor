@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>現代測量員 (Modern Surveyor) - 3D 第一人稱測量模擬遊戲</title>
+    <title>我是測量員 - 3D 第一人稱測量模擬遊戲</title>
     <link rel="stylesheet" href="css/style.css">
     <!-- Three.js 3D Engine -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -16,7 +16,7 @@
     <!-- 頂部導航與狀態列 -->
     <div id="top-hud">
         <div class="hud-pill">
-            <div class="hud-title">📐 現代測量員 <span style="font-size:12px; color:var(--text-muted); font-weight:normal;">Modern Surveyor v1.0</span></div>
+            <div class="hud-title">📐 我是測量員 <span style="font-size:12px; color:var(--text-muted); font-weight:normal;">v1.0</span></div>
             <div class="hud-status-badge" id="mouse-lock-status">🖱️ 點擊畫面鎖定視角</div>
         </div>
         <div class="hud-actions">
@@ -199,13 +199,13 @@
     </div>
 
     <!-- ========================================================================= -->
-    <!-- 模態視窗 3：斜儀高捲尺量測面板 (天線底盤特寫與自讀刻度) -->
+    <!-- 模態視窗 3：儀器斜高捲尺量測面板 (天線底盤特寫與自讀刻度) -->
     <!-- ========================================================================= -->
     <div id="tape-measure-modal" class="modal-backdrop">
         <div class="instrument-modal" style="width:840px;">
             <div class="instrument-modal-header">
                 <div>
-                    <h3>GNSS 天線斜儀高鋼捲尺量測 (Slant Height Reading)</h3>
+                    <h3>GNSS 天線儀器斜高鋼捲尺量測 (Slant Height Reading)</h3>
                     <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">請自主判讀鋼捲尺與天線基準緣（ARP 刻線）交會處的數值，讀數精度將影響成果評分</div>
                 </div>
                 <button class="btn-hud modal-close-btn">✕</button>
@@ -230,7 +230,7 @@
                         </div>
 
                         <div style="margin-bottom:12px;">
-                            <label style="font-size:12px; color:var(--text-muted); display:block; margin-bottom:6px;">請輸入您目視讀取並估讀的斜儀高 (m)：</label>
+                            <label style="font-size:12px; color:var(--text-muted); display:block; margin-bottom:6px;">請輸入您目視讀取並估讀的儀器斜高 (m)：</label>
                             <input id="tape-user-input" type="number" step="0.0001" class="tape-reading-input" placeholder="例如: 1.5913">
                         </div>
 
@@ -310,13 +310,13 @@
                     </div>
 
                     <div id="gnss-stream-log" style="font-family:var(--font-mono); font-size:11px; color:#64748b; background:#0b0f19; padding:6px 10px; border-radius:4px; border:1px solid #1e293b;">
-                        [IDLE] 點擊下方按鈕啟動 1440 歷元靜態觀測記錄資料串流...
+                        [IDLE] 點擊下方按鈕開始靜態觀測記錄資料串流...
                     </div>
                 </div>
             </div>
 
             <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:14px;">
-                <button id="btn-start-gnss-record" class="btn-hud btn-primary" style="padding:10px 24px; font-size:14px;" onclick="startStaticRecording()">▶ 啟動 1440 歷元靜態記錄 (Enter)</button>
+                <button id="btn-start-gnss-record" class="btn-hud btn-primary" style="padding:10px 24px; font-size:14px;" onclick="startStaticRecording()">▶ 開始靜態觀測 (Enter)</button>
             </div>
         </div>
     </div>
@@ -415,7 +415,7 @@
                         <!-- 倒數時間 -->
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                             <span style="font-size:13px; color:#94a3b8;">⏱️ 扶尺觀測維持倒數</span>
-                            <span id="staff-qte-timer" style="font-family:var(--font-mono); font-size:24px; font-weight:700; color:var(--accent-yellow);">8.0 秒</span>
+                            <span id="staff-qte-timer" style="font-family:var(--font-mono); font-size:24px; font-weight:700; color:var(--accent-yellow);">10.0 秒</span>
                         </div>
                         <div style="width:100%; height:8px; background:#1e293b; border-radius:4px; overflow:hidden; margin-bottom:14px; border:1px solid #334155;">
                             <div id="staff-qte-time-bar" style="width:100%; height:100%; background:linear-gradient(90deg, #10b981, #06b6d4); transition:width 0.05s linear;"></div>
@@ -440,7 +440,7 @@
 
                     <div style="margin-top:14px;">
                         <button id="btn-start-staff-qte" class="btn-hud btn-primary" style="width:100%; justify-content:center; padding:12px; font-size:14px;" onclick="startStaffQTE()">
-                            ▶ 開始扶尺平衡檢定 (Enter)
+                            ▶ 幫我撐10秒 (Enter)
                         </button>
                     </div>
                 </div>
@@ -892,7 +892,7 @@
     <div id="grand-summary-modal" class="modal-backdrop">
         <div class="score-modal" style="width:760px; max-width:94vw;">
             <div style="font-size:12px; font-weight:700; color:var(--accent-cyan); letter-spacing:1px; margin-bottom:2px;">SURVEYING OPERATIONS CERTIFICATION</div>
-            <h2 style="font-size:24px; color:#fff; margin-bottom:8px;">🏆 現代測量員 — 外業全能總成果評定</h2>
+            <h2 style="font-size:24px; color:#fff; margin-bottom:8px;">🏆 我是測量員 — 外業全能總成果評定</h2>
             
             <div id="grand-final-rank" class="score-rank" style="font-size:64px; margin:4px 0;">S</div>
             <div id="grand-final-title" style="font-size:20px; font-weight:800; color:#10b981; margin-bottom:6px;">國家測量技師</div>
@@ -921,7 +921,7 @@
     <div id="help-guide-modal" class="modal-backdrop">
         <div class="level-modal" style="width:760px;">
             <div class="level-modal-header">
-                <h2>📖 現代測量員外業實務指南</h2>
+                <h2>📖 我是測量員外業實務指南</h2>
                 <button class="btn-hud modal-close-btn">✕ 關閉</button>
             </div>
             <div style="padding:24px 28px; display:flex; flex-direction:column; gap:16px; font-size:14px; line-height:1.6; color:#d1d5db;">
