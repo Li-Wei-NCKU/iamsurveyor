@@ -514,7 +514,7 @@ body, html {
     flex-wrap: wrap;
 }
 
-/* 鋼捲尺斜儀高量測特寫面板 */
+/* 鋼捲尺儀器斜高量測特寫面板 */
 .tape-reading-container {
     display: flex;
     gap: 20px;

@@ -447,7 +447,7 @@ class LevelLeveling {
         this.bubbleY = -12;
         this.velocityX = 0;
         this.velocityY = 0;
-        this.balanceTimeLeft = 8.0;
+        this.balanceTimeLeft = 10.0;
         this.sampleTicks = 0;
         this.totalQuality = 0;
         this.staffBalancingActive = false;
@@ -459,7 +459,7 @@ class LevelLeveling {
         const commentEl = document.getElementById('staff-qte-comment');
         const startBtn = document.getElementById('btn-start-staff-qte');
 
-        if (timerEl) timerEl.innerText = "8.0 秒";
+        if (timerEl) timerEl.innerText = "10.0 秒";
         if (timeBar) timeBar.style.width = "100%";
         if (stabEl) stabEl.innerText = "100.0%";
         if (resEl) resEl.innerText = "0.00 mm";
@@ -469,7 +469,7 @@ class LevelLeveling {
         }
         if (startBtn) {
             startBtn.disabled = false;
-            startBtn.innerText = "▶ 開始扶尺平衡檢定 (Enter)";
+            startBtn.innerText = "▶ 幫我撐10秒 (Enter)";
             startBtn.focus();
         }
 

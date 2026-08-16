@@ -34,8 +34,8 @@ class LevelGNSS {
         return [
             { id: 0, text: "前往已知點 CKSV (一等衛星控制點) 並架設 GNSS 三腳架" },
             { id: 1, text: "進行三腳基座定心與定平 (光學對心器與圓水準氣泡交替微調至合格)" },
-            { id: 2, text: "使用鋼捲尺量取天線斜儀高 (Slant Antenna Height)" },
-            { id: 3, text: "操作外業手簿啟動 1440 歷元靜態觀測記錄" }
+            { id: 2, text: "使用鋼捲尺量取天線儀器斜高 (Slant Antenna Height)" },
+            { id: 3, text: "操作控制器啟動靜態測量" }
         ];
     }
 
@@ -46,8 +46,8 @@ class LevelGNSS {
         }
         if (type === 'instrument' && obj.userData.instrumentType === 'gnss') {
             if (this.currentStep === 1) return "進入基座定心與定平工作台 [GNSS]";
-            if (this.currentStep === 2) return "量取天線斜儀高 [鋼捲尺]";
-            if (this.currentStep === 3) return "操作外業手簿啟動靜態測量 [GNSS Controller]";
+            if (this.currentStep === 2) return "量取天線儀器斜高 [鋼捲尺]";
+            if (this.currentStep === 3) return "操作控制器啟動靜態測量 [GNSS Controller]";
         }
         return null;
     }
@@ -174,7 +174,7 @@ class LevelGNSS {
             this.app.closeModal('leveling-modal');
             this.currentStep = 2;
             if (window.surveyAudio) window.surveyAudio.playSuccessChime();
-            this.app.updateMissionPanel(this.title, this.getTasks(), this.currentStep, `基座已鎖定 (對心誤差: ${this.finalCenteringErrorMm}mm, 氣泡殘差: ${this.finalLevelingErrorMm}mm)！按 E 量取斜儀高。`);
+            this.app.updateMissionPanel(this.title, this.getTasks(), this.currentStep, `基座已鎖定 (對心誤差: ${this.finalCenteringErrorMm}mm, 氣泡殘差: ${this.finalLevelingErrorMm}mm)！按 E 量取儀器斜高。`);
         };
     }
 
@@ -376,7 +376,7 @@ class LevelGNSS {
 
             if (feedbackEl) {
                 const diffDesc = this.tapeReadingErrorMm <= 0.1 ? `讀數極其精確 (${this.tapeReadingErrorMm}mm 估讀誤差)！` : `估讀誤差: ${this.tapeReadingErrorMm} mm`;
-                feedbackEl.innerHTML = `<span style="color:#10b981;">✓ 已記錄斜高 ${userVal.toFixed(4)} m (換算垂直高 ${hv}m) - ${diffDesc}</span>`;
+                feedbackEl.innerHTML = `<span style="color:#10b981;">✓ 已記錄儀器斜高 ${userVal.toFixed(4)} m (換算垂直高 ${hv}m) - ${diffDesc}</span>`;
             }
 
             // Update GNSS controller modal display text
@@ -390,7 +390,7 @@ class LevelGNSS {
                 this.slantHeightMeasured = true;
                 this.currentStep = 3;
                 if (window.surveyAudio) window.surveyAudio.playSuccessChime();
-                this.app.updateMissionPanel(this.title, this.getTasks(), this.currentStep, `斜儀高 ${userVal.toFixed(4)}m 已記錄！按 E 操作控制器啟動靜態測量。`);
+                this.app.updateMissionPanel(this.title, this.getTasks(), this.currentStep, `儀器斜高 ${userVal.toFixed(4)}m 已記錄！按 E 操作控制器啟動靜態測量。`);
             }, 900);
         };
     }
@@ -581,10 +581,10 @@ class LevelGNSS {
 
         if (pBar) pBar.style.width = '0%';
         if (countElem) countElem.innerText = `0 / ${this.targetEpochs} 歷元 (0.0%)`;
-        if (streamLog) streamLog.innerText = `[IDLE] 點擊下方按鈕啟動 ${this.targetEpochs} 歷元靜態觀測記錄資料串流...`;
+        if (streamLog) streamLog.innerText = `[IDLE] 點擊下方按鈕開始靜態觀測記錄資料串流...`;
         if (startBtn) {
             startBtn.disabled = false;
-            startBtn.innerText = `▶ 啟動 ${this.targetEpochs} 歷元靜態記錄 (Enter)`;
+            startBtn.innerText = `▶ 開始靜態觀測 (Enter)`;
         }
 
         let isRecording = false;
@@ -701,7 +701,7 @@ class LevelGNSS {
                 { label: '測站點號', value: 'CKSV (一等衛星控制點)' },
                 { label: '基座光學對心中誤差', value: `${cErr} mm [${centerDesc}, 得分: ${centerScore}]` },
                 { label: '圓水準氣泡定平殘差', value: `${lErr} mm [${levelDesc}, 得分: ${levelScore}]` },
-                { label: '天線斜儀高目視估讀 (0.1mm)', value: `真值 ${trueSlant.toFixed(4)}m / 判讀 ${playerSlant.toFixed(4)}m (殘差: ${tErr}mm, 得分: ${tapeScore})` },
+                { label: '天線儀器斜高目視估讀 (0.1mm)', value: `真值 ${trueSlant.toFixed(4)}m / 判讀 ${playerSlant.toFixed(4)}m (殘差: ${tErr}mm, 得分: ${tapeScore})` },
                 { label: '換算垂直天線高 hv', value: `${hv} m (ARP 半徑 R=0.140m)` },
                 { label: '歷元追蹤與解算', value: '1440 歷元 (PDOP 1.28, 19 Sats, 100% 完整率)' },
                 { label: '外業成果綜合評分', value: `${totalScore} 分 (評等: ${rank})` }
